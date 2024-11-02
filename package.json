@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "node --env-file .env --watch index.js"
   },
   "keywords": [
     "middlewares",
@@ -16,6 +17,9 @@
   "license": "ISC",
   "description": "Backend para el proyecto chill Hotel",
   "dependencies": {
-    "express": "^4.21.1"
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.0",
+    "morgan": "^1.10.0"
   }
 }
