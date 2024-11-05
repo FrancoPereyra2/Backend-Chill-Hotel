@@ -13,7 +13,7 @@
     "MongoDB",
     "ExpressJS"
   ],
-  "author": "Franco",
+  "author": "Pereyra Franco,Gonzalez Axel,Rodriguez Santiago,Infante Ezequiel",
   "license": "ISC",
   "description": "Backend para el proyecto chill Hotel",
   "dependencies": {
