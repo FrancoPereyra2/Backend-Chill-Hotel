@@ -16,7 +16,7 @@ export const agregarHabitacion = async(req, res)=>{
 
 export const listaHabitaciones = async(req, res)=>{
     try {
-        const habitaciones = await Reserva.find()
+        const habitaciones = await Reserva.find();
         
         res.status(200).json(habitaciones)
     } catch (error) {
