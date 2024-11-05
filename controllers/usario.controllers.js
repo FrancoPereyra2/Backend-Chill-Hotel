@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import Usuario from "./Usario.js";
 export const crearUsuario = async (req, res) => {
     try {
       const { email, password, } = req.body; 
