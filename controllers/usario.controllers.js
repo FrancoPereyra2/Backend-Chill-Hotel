@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import generarJWT from "../helpers/generarJWT.js";
 export const crearUsuario = async (req, res) => {
     try {
       const { email, password, } = req.body; 
