@@ -4,6 +4,7 @@ import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import './src/database/dbConnection.js'
+import routerHabitacion from './src/routes/habitacion.routes.js'
 
 const app = express()
 
@@ -20,8 +21,5 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 app.use(express.static(path.join(__dirname, '/public')))
 
-// http://localhost:4000/prueba
-app.get('/prueba', (req, res)=>{
-    console.log('alguien hizo una solicitud get a la ruta de prueba')
-    res.send('Hola mundo desde el Backend')
-})
+
+app.use('/api', routerHabitacion)
