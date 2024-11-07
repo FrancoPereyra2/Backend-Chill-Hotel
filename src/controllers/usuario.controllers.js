@@ -7,6 +7,7 @@ export const crearUsuario = async (req, res) => {
     const { email, password, nombreUsuario } = req.body;
     const mailExistente = await Usuario.findOne({email});
     if (mailExistente) {
+      console.info("desde el chequeo de mail")
       return res
         .status(400)
         .json({ mensaje: "Este correo ya se encuentra registrado" });
@@ -17,7 +18,6 @@ export const crearUsuario = async (req, res) => {
         .status(400)
         .json({ mensaje: "Nombre de usuario en uso" });
     } 
-
     const nuevoUsuario = new Usuario(req.body);
     //hashea el password
     const saltos = bcrypt.genSaltSync(10);
@@ -31,6 +31,18 @@ export const crearUsuario = async (req, res) => {
       .json({ mensaje: "Ocurrio un error al intentar crear un usuario" });
   }
 };
+
+export const leerUsuario = async(req, res)=>{
+  try {
+      const usuarios = await Usuario.find();
+      
+      res.status(200).json(usuarios)
+  } catch (error) {
+      console.error(error)
+      res.status(500).json({mensaje: 'Ocurrio un Error, no pude agregar la habitacion'})
+  }
+}
+
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
