@@ -5,6 +5,6 @@ import { crearUsuario, leerUsuario, login } from "../controllers/usuario.control
 const router = Router();
 
 router.route('/usuario').post(crearUsuario).get(leerUsuario);
-// router.route('/usuario').post(login)
+router.route('/ingreso').post(login)
 
 export default router;
