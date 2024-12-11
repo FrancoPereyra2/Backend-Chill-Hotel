@@ -43,6 +43,46 @@ export const leerUsuario = async(req, res)=>{
   }
 }
 
+export const obtenerUsuario = async (req, res)=>{
+  try {  
+     const UsuarioBuscado = await Usuario.findById(req.params.id)
+     
+     if(!UsuarioBuscado){
+      console.info(UsuarioBuscado)
+        return res.status(404).json({mensaje: 'Los datos del usuario no fueron encontrados'})
+     }
+    
+     res.status(200).json(UsuarioBuscado)
+  } catch (error) {
+     console.error(error);
+     res
+       .status(500)
+       .json({ mensaje: "Ocurrio un error, no se pudo obtener el usuario" });
+  }
+}
+
+export const editarUsuario = async (req, res) => {
+  try {
+    const UsuarioBuscado = await Usuario.findById(req.params.id);
+    console.info(UsuarioBuscado);
+   
+    if (!UsuarioBuscado) {
+      return res
+        .status(404)
+        .json({ mensaje: "El usuario no existe" });
+    }
+ 
+    await Usuario.findByIdAndUpdate(req.params.id, req.body);
+
+    res.status(200).json({ mensaje: "El usuario fue editado correctamente" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ mensaje: "Ocurrio un error, no se pudo editar el usuario" });
+  }
+};
+
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -59,10 +99,12 @@ export const login = async (req, res) => {
         .json({ mensaje: "Correo o password incorrecto - password" });
     }
     const token = await generarJWT(usuarioExistente._id, usuarioExistente.email)
+    const id = usuarioExistente._id
     res.status(200).json({
       mensaje: "Los datos del usuario son validos",
       email,
-      token
+      token,
+      id
     });
   } catch (error) {
     console.error(error);
