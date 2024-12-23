@@ -7,7 +7,6 @@ export const crearUsuario = async (req, res) => {
     const { email, password, nombreUsuario } = req.body;
     const mailExistente = await Usuario.findOne({email});
     if (mailExistente) {
-      console.info("desde el chequeo de mail")
       return res
         .status(400)
         .json({ mensaje: "Este correo ya se encuentra registrado" });
@@ -18,12 +17,14 @@ export const crearUsuario = async (req, res) => {
         .status(400)
         .json({ mensaje: "Nombre de usuario en uso" });
     } 
-    const nuevoUsuario = new Usuario(req.body);
-    //hashea el password
+    const nuevoUsuario = new Usuario(req.body)
     const saltos = bcrypt.genSaltSync(10);
     nuevoUsuario.password = bcrypt.hashSync(password, saltos);
     nuevoUsuario.save();
-    res.status(201).json({ mensaje: "El usuario se creo correctamente" });
+    res.status(201).json({
+      id: nuevoUsuario._id,
+      email: nuevoUsuario.email,
+       mensaje: "El usuario se creo correctamente" });
   } catch (error) {
     console.error(error);
     res
@@ -80,6 +81,28 @@ export const editarUsuario = async (req, res) => {
     res
       .status(500)
       .json({ mensaje: "Ocurrio un error, no se pudo editar el usuario" });
+  }
+};
+
+export const borrarUsuario = async (req, res) => {
+  try {
+ 
+    const UsuarioBuscado = await Usuario.findById(req.params.id);
+
+    if (!UsuarioBuscado) {
+      return res.status(404).json({ mensaje: "Error al encontrar la cuenta, intente mas tarde" });
+    }
+    
+  
+    await Usuario.findByIdAndDelete(req.params.id);
+    res
+      .status(200)
+      .json({ mensaje: "La Cuenta fue eliminada correctamente" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ mensaje: "Ocurrio un error, no se pudo eliminar la cuenta" });
   }
 };
 
