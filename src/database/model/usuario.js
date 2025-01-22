@@ -33,10 +33,17 @@ const usuarioSchema = new mongoose.Schema({
     nacionalidad: {
         type: String,
         required: true,
-        enum: ["Argentina", "Chile", "US", "Brasil", "México"],
+        enum: ["Argentina", "Chile", "Estados Unidos", "Brasil", "México"],
+    },
+    roles: {
+        type: String,
+        required: true,
+        enum: ["Usuario corriente", "Administrador general", "Gerente de Ventas y Marketing", "Soporte Técnico", "Recepcionista"],
+        default: "Usuario corriente"
     },
     imagen: {
         type: String,
+        default: "https://thumbs.dreamstime.com/b/perfil-de-usuario-vectorial-avatar-predeterminado-179376714.jpg",
         required: true,
         validate: {
             validator: (valor) => {

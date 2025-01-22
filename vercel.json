@@ -1,0 +1,20 @@
+{
+
+    "builds": [
+      {
+        "src": "./index.js",
+        "use": "@vercel/node",
+        "env": {
+          "NPM_FLAGS": "--legacy-peer-deps"
+        }
+      }
+    ],
+  
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
+    ]
+  }
+  
