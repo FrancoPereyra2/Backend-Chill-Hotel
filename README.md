@@ -5,6 +5,12 @@
 
 # Sistema de Gestión de Chill Hotel  Back-end✈🌍
 
+> **🇬🇧 English summary** — Team project: REST API for a hotel management system (clients, rooms and bookings, plus occupancy and billing reports). I worked as a back-end developer on the API.
+>
+> **Stack:** Node.js · Express · MongoDB · Mongoose · JWT
+>
+> 🔗 **Deployed on Vercel:** [backend-chill-hotel.vercel.app](https://backend-chill-hotel.vercel.app)
+
 ## Descripción
 
 Este proyecto es un **Sistema de Gestión de Hotelería** que facilita la administración de reservas, clientes y servicios en un entorno hotelero. Nuestro objetivo es optimizar la experiencia del cliente y la eficiencia operativa del hotel.
